@@ -1,0 +1,9 @@
+
+# --- GIT aliases
+
+alias amend="git commit --amend"
+alias mom="git status"
+alias log="git log --oneline"
+alias diff="PATH_TO_ODOO_SCRIPTS_FOLDER/diff.sh"
+alias please="git rebase
+git please dev"

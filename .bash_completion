@@ -1,0 +1,35 @@
+#!/bin/bash
+
+_branches() {
+    local cur branches repo_path
+    cur="${COMP_WORDS[COMP_CWORD]}"          # Current word being typed
+    repo_path="$HOME/work/community-master"  # Path to the master repository
+
+    branches=$(git -C ${repo_path} for-each-ref refs/heads/ --format="%(refname:short)")
+
+    COMPREPLY=( $(compgen -W "${branches}" -- "${cur}") )
+}
+
+complete -F _branches close
+
+_modules(){
+    if [ ${COMP_WORDS[COMP_CWORD-1]} != "-i" ]
+    then
+        return 0
+    fi
+    local cur branch community_addons enterprise_addons addons existing_modules
+    cur=${COMP_WORDS[COMP_CWORD]}
+    branch=$(echo $(pwd) | awk -F/ '{print $NF}' | cut -d '_' -f 2-)
+    community_addons=$(find "$HOME/work/community_$branch/addons" -maxdepth 1 -type d -exec basename {} \; 2>/dev/null)
+    enterprise_addons=$(find "$HOME/work/enterprise_$branch" -maxdepth 1 -type d -exec basename {} \; 2>/dev/null)
+    addons="${community_addons} ${enterprise_addons}"
+
+    # Extract the last term after the last comma
+    existing_modules=$(echo "${cur}" | sed 's/[^,]*$//')
+    cur=$(echo "${cur}" | awk -F, '{print $NF}')
+
+    COMPREPLY=( $(compgen -W "${addons}" -- "${cur}") )
+    COMPREPLY=( "${COMPREPLY[@]/#/${existing_modules}}" )
+}
+
+complete -o nospace -F _modules odoo

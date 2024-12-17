@@ -1,0 +1,7 @@
+#!/bin/bash
+
+db=$(PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/getdb)
+
+name_extension=${1:-SAVEPOINT}
+
+PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/copydb "${db}__${name_extension}" "$db"

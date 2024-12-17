@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+for arg in "$@"; do
+  db_list=$(PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/ldb -a | grep "$arg")
+  for db_name in $db_list; do
+    echo "Deleting $db_name"
+    dropdb --if-exists "$db_name"
+    rm -rf "$HOME/.local/share/Odoo/filestore/$db_name"
+  done
+done

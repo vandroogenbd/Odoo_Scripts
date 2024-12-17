@@ -1,0 +1,14 @@
+
+# --- DB utils aliases
+
+alias copydb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/copydb"
+alias dropall="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/dropall"
+alias getdb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/getdb"
+alias ldb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/ldb"
+alias restoredb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/restoredb"
+alias resetdb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/resetdb"
+alias savedb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/savedb"
+alias setdb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/setdb"
+alias dbhelp="cat PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/help.txt"
+alias dbh="cat PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/help_short.txt"
+alias dbs="bash PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/list_savepoints.sh"

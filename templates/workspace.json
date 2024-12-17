@@ -1,0 +1,67 @@
+{
+	"folders": [
+		{
+			"path": "COMMUNITY_PATH"
+		},
+		{
+			"path": "ENTERPRISE_PATH"
+		}
+	],
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "drop_test_db",
+				"type": "shell",
+				"command": "(dropdb DB_NAMEtest || true) >&2",
+				"problemMatcher": []
+			}
+		]
+	},
+	"settings": {
+		"launch": {
+			"version": "0.2.0",
+			"configurations": [
+				{
+					"name": "Odoo Server VXX.X",
+					"type": "debugpy",
+					"request": "launch",
+					"program": "COMMUNITY_PATH/odoo-bin",
+					"args" : [
+						"--addons-path", "COMMUNITY_PATH/addons/,ENTERPRISE_PATH/",
+						"-d", "DB_NAME",
+						"--dev", "all",
+						"--without-demo", "all",
+						"-p", "8069",
+						"--limit-time-cpu", "0",
+						"--limit-time-real", "0",
+						// "-i", "",
+					],
+					"console": "integratedTerminal",
+					"variablePresentation": {}
+				},
+				{
+					"name": "Test Odoo VXX.X",
+					// "preLaunchTask": "drop_test_db",
+					"type": "debugpy",
+					"request": "launch",
+					"program": "COMMUNITY_PATH/odoo-bin",
+					"args" : [
+						"--addons-path", "COMMUNITY_PATH/addons/,ENTERPRISE_PATH/",
+						"-d", "DB_NAMEtest",
+						"-p", "8071",
+						"--limit-time-cpu", "0",
+						"--limit-time-real", "0",
+						"--without-demo", "all",
+						"--stop-after-init",
+						//"-i", "",
+						"--test-tags", "",
+						//"--log-level", "error",
+					],
+					"console": "integratedTerminal",
+					"variablePresentation": {}
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+
+# --- Odoo_scripts
+
+# Run Odoo server
+alias odoo="bash PATH_TO_ODOO_SCRIPTS_FOLDER/run_odoo.sh"
+# Create new branch
+alias branch="bash PATH_TO_ODOO_SCRIPTS_FOLDER/new_branch.sh"
+# Close current branch
+alias close="bash PATH_TO_ODOO_SCRIPTS_FOLDER/close_branch.sh"
+# Retarget current branch
+alias retarget="bash PATH_TO_ODOO_SCRIPTS_FOLDER/retarget_branch.sh"
+# Switch current branch to a forward port
+alias fw="bash PATH_TO_ODOO_SCRIPTS_FOLDER/forward.sh"
+# Drop current branch db
+alias drop="bash PATH_TO_ODOO_SCRIPTS_FOLDER/my_drop.sh"
+# Extract db from zip archive
+alias setupdb="bash PATH_TO_ODOO_SCRIPTS_FOLDER/extract_db.sh"

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+filestore_dir="$HOME/.local/share/Odoo/filestore"
+
+set -e
+
+if [ "$#" -ne 2 ]; then
+  >&2 echo "Usage: $0 <FROM_DB> <TO_DB>"
+  exit 1
+fi
+
+find_db() {
+  PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/ldb -a | grep -xFq "$1"
+}
+
+from=$1
+to=$2
+
+PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/killodoo
+
+if ! find_db "$from"; then
+  >&2 echo "DB $from does not exist"
+  exit 1
+fi
+
+if find_db "$to"; then
+  dropdb "$to"
+fi
+
+restore_filestore() {
+  local source_dir="$filestore_dir/$from"
+  local destination_dir="$filestore_dir/$to"
+
+  if [ -d "$destination_dir" ]; then
+    rm -rf "$destination_dir"
+  fi
+
+  if [ -d "$source_dir" ]; then
+    mkdir -p "$destination_dir" && cp -rf "$source_dir"/* "$destination_dir"/
+  fi
+}
+
+restore_filestore &
+createdb -T "$from" "$to" &
+wait

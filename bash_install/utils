@@ -1,0 +1,11 @@
+
+# --- Utility imports
+
+# Playground utils
+source PATH_TO_ODOO_SCRIPTS_FOLDER/playground_utils.sh
+# Random utils
+source PATH_TO_ODOO_SCRIPTS_FOLDER/random_utils.sh
+
+# Custom completion
+source PATH_TO_ODOO_SCRIPTS_FOLDER/.bash_completion
+source PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/.bash_completion

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+db=$(PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/getdb)
+clean_db=$(echo $db | cut -d'-' -f2)
+
+PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/copydb $clean_db $db
+echo "DB \"$db\", reset to \"$clean_db\""
