@@ -1,0 +1,15 @@
+----- Client
+
+Hello,
+
+Your ticket has been treated and the issue has been solved. The correction should be available early next week.
+
+Best regards,
+
+
+
+----- Review request
+
+Hello, I hope you're doing well!
+I have a PR (fix) waiting for your review, could you please take a look? -> PR_LINK
+Thanks in advance!
