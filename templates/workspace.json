@@ -1,0 +1,67 @@
+{
+	"folders": [
+		{
+			"path": "/home/odoo/work/COMMUNITY"
+		},
+		{
+			"path": "/home/odoo/work/ENTERPRISE"
+		}
+	],
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "drop_test_db",
+				"type": "shell",
+				"command": "(dropdb db-test-debug || true) >&2",
+				"problemMatcher": []
+			}
+		]
+	},
+	"settings": {
+		"search.exclude": {
+			"**.po**": true,
+			"**_init_**": true,
+			"**manifest**": true,
+			"**test**": true,
+			"**tour**": true,
+			"**_demo**": true
+		},
+		"launch": {
+			"version": "0.2.0",
+			"configurations": [
+				{
+					"name": "Odoo Server VXX.X",
+					"type": "debugpy",
+					"request": "launch",
+					"program": "/home/odoo/work/COMMUNITY/odoo-bin",
+					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "db-BRANCH", "--dev", "all", "-p", "8069"],
+					"console": "integratedTerminal"
+				},
+				{
+					"name": "Test Odoo VXX.X",
+					"preLaunchTask": "drop_test_db",
+					"type": "debugpy",
+					"request": "launch",
+					"program": "/home/odoo/work/COMMUNITY/odoo-bin",
+					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "db-test-debug", "--dev", "all", "-p", "8069", "${input:required_modules}", "${input:tested_modules}", "--stop-after-init", "--log-level", "error"],
+					"console": "integratedTerminal"
+				}
+			],
+			"inputs": [
+				{
+					"id": "required_modules",
+					"type": "promptString",
+					"description": "Write the modules to install on the test db (eg: \"-i=module_1,module_2\")",
+					"default": "-i="
+				},
+				{
+					"id": "tested_modules",
+					"type": "promptString",
+					"description": "Write the modules for which to run the tests (eg: \"--test-tags=module_1,module_2\")",
+					"default": "--test-tags="
+				}
+			]
+		}
+	}
+}
