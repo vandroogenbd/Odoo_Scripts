@@ -1,0 +1,13 @@
+#!/bin/bash
+
+_branches() {
+    local cur branches repo_path
+    cur="${COMP_WORDS[COMP_CWORD]}"          # Current word being typed
+    repo_path="$HOME/work/community-master"  # Path to the master repository
+
+    branches=$(git -C ${repo_path} for-each-ref refs/heads/ --format="%(refname:short)")
+
+    COMPREPLY=( $(compgen -W "${branches}" -- "${cur}") )
+}
+
+complete -F _branches close

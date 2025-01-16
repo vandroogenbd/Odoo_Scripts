@@ -35,7 +35,7 @@
 					"type": "debugpy",
 					"request": "launch",
 					"program": "/home/odoo/work/COMMUNITY/odoo-bin",
-					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "db-BRANCH", "--dev", "all", "-p", "8069"],
+					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "debug-TICKET_NO", "--dev", "all", "-p", "8069"],
 					"console": "integratedTerminal"
 				},
 				{
@@ -44,7 +44,7 @@
 					"type": "debugpy",
 					"request": "launch",
 					"program": "/home/odoo/work/COMMUNITY/odoo-bin",
-					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "db-test-debug", "--dev", "all", "-p", "8069", "${input:required_modules}", "${input:tested_modules}", "--stop-after-init", "--log-level", "error"],
+					"args" : ["--addons-path", "/home/odoo/work/COMMUNITY/addons/,/home/odoo/work/ENTERPRISE/", "-d", "test-TICKET_NO", "--dev", "all", "-p", "8069", "${input:required_modules}", "${input:tested_modules}", "--stop-after-init", "--log-level", "error"],
 					"console": "integratedTerminal"
 				}
 			],

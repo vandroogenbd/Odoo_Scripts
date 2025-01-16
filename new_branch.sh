@@ -47,6 +47,7 @@ then
 	cp ~/commit_template.txt "$dst_enterprise/commit.message"
 
 	# Add VSCode workspace settings
+	ticket_number="$(echo "$1" | cut -d'-' -f1)"
 	loc=$dst_community/$(echo $destination_branch | cut -d '-' -f 3-4).code-workspace
 	cp ~/scripts/templates/workspace.json $loc
 
@@ -57,6 +58,7 @@ then
 	sed -i "s|ENTERPRISE|$enterprise_dir|g" $loc
 	sed -i "s|BRANCH|$destination_branch|g" $loc
 	sed -i "s|XX.X|$version|g" $loc
+	sed -i "s|TICKET_NO|$ticket_number|g" $loc
 
 	codium -n $loc
 fi

@@ -49,7 +49,7 @@ enterprise_path="~/work"
 # Default branch name
 branch=$(echo $(pwd) | awk -F/ '{print $NF}' | cut -d '_' -f 2-)
 # Default db name
-db_name="db-$branch"
+db_name="$(echo "$branch" | awk -F'-' '{for (i=1; i<=NF; i++) if ($i ~ /^[0-9]+$/) print $i}')"
 # No modules by default
 modules=""
 # Default port
@@ -102,7 +102,7 @@ while getopts ":h :o :c: :e: :b: :d: :r :p: :i: :l: :t: :u: :s" opt; do
 			db_name=$OPTARG
 			;;
 		r)
-			(dropdb $db_name || true)
+			dropdb $db_name
 			echo "DROPPED DB : $db_name"
 			;;
 		p)
