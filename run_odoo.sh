@@ -49,7 +49,7 @@ enterprise_path="~/work"
 # Default branch name
 branch=$(echo $(pwd) | awk -F/ '{print $NF}' | cut -d '_' -f 2-)
 # Default db name
-db_name="$(echo "$branch" | awk -F'-' '{for (i=1; i<=NF; i++) if ($i ~ /^[0-9]+$/) print $i}')"
+db_name="$(echo "$branch" | awk -F'-' '{for (i=1; i<=NF; i++) if ($i ~ /^[0-9]+$/) print $i}')-$(basename "$branch" | grep -oP '\d+\.\d+' | head -n 1)"
 # No modules by default
 modules=""
 # Default port

@@ -47,18 +47,16 @@ then
 	cp ~/commit_template.txt "$dst_enterprise/commit.message"
 
 	# Add VSCode workspace settings
-	ticket_number="$(echo "$1" | cut -d'-' -f1)"
+	version_number=$(basename "$2" | grep -oP '\d+\.\d+')
+	db_name="$(echo "$1" | cut -d'-' -f1)-$version_number"
 	loc=$dst_community/$(echo $destination_branch | cut -d '-' -f 3-4).code-workspace
 	cp ~/scripts/templates/workspace.json $loc
 
-	community_dir="community_$destination_branch"
-	enterprise_dir="enterprise_$destination_branch"
-
-	sed -i "s|COMMUNITY|$community_dir|g" $loc
-	sed -i "s|ENTERPRISE|$enterprise_dir|g" $loc
+	sed -i "s|COMMUNITY_PATH|$dst_community|g" $loc
+	sed -i "s|ENTERPRISE_PATH|$dst_enterprise|g" $loc
 	sed -i "s|BRANCH|$destination_branch|g" $loc
-	sed -i "s|XX.X|$version|g" $loc
-	sed -i "s|TICKET_NO|$ticket_number|g" $loc
+	sed -i "s|XX.X|$version_number|g" $loc
+	sed -i "s|DB_NAME|$db_name|g" $loc
 
 	codium -n $loc
 fi
