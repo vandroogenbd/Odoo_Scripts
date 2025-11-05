@@ -37,17 +37,17 @@ read -p "Remove branch '$branch_name'? " -n 1 -r
 echo ""
 if [[ $REPLY = "" ]];
 then
-	dropall $db_name
+	PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/dropall $db_name
 	echo "
 Dropped dbs!"
 
 	cd $community_master_path
 	git worktree remove ../community_$branch_name --force
-	git branch -D $branch_name
+	git branch | grep $branch_name | xargs git branch -D
 
 	cd $enterprise_master_path
 	git worktree remove ../enterprise_$branch_name --force
-	git branch -D $branch_name
+	git branch | grep $branch_name | xargs git branch -D
 
     echo "
 Finished cleanup!"
