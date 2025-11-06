@@ -48,9 +48,9 @@ Examples:
 # --- Default values ---
 
 # Default community path
-community_path="~/work"
+community_path="$HOME/work"
 # Default enterprise path
-enterprise_path="~/work"
+enterprise_path="$HOME/work"
 # Default branch name
 branch=$(echo $(pwd) | awk -F/ '{print $NF}' | cut -d '_' -f 2-)
 # Default db name
@@ -72,7 +72,7 @@ log_level=""
 # No upgrade by default
 upgrade=false
 up_path=""
-up_utils="~/work/upgrade-util-master/src"
+up_utils="$HOME/work/upgrade-util-master/src"
 # Stop the server after init
 stop=""
 # Don't time-out (useful for debugging pruposes mostly)

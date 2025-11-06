@@ -3,12 +3,12 @@
 # usage: close_branch
 
 # Default root path
-root_path="~/work"
+root_path="$HOME/work"
 
 # community master repo
-community_master_path=~/work/community-master
+community_master_path=$HOME/work/community-master
 # enterprise master repo
-enterprise_master_path=~/work/enterprise-master
+enterprise_master_path=$HOME/work/enterprise-master
 
 # Branch name
 branch_name=""

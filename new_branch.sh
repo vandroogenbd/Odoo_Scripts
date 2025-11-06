@@ -4,9 +4,9 @@
 
 
 # community master repo
-community_master_path=~/work/community-master
+community_master_path=$HOME/work/community-master
 # enterprise master repo
-enterprise_master_path=~/work/enterprise-master
+enterprise_master_path=$HOME/work/enterprise-master
 
 
 # Branch name
@@ -44,12 +44,12 @@ then
 	git worktree add -b $destination_branch ../enterprise_$destination_branch origin/$version
 
 	# Created destinations
-	dst_community=~/work/community_$destination_branch
-	dst_enterprise=~/work/enterprise_$destination_branch
+	dst_community=$HOME/work/community_$destination_branch
+	dst_enterprise=$HOME/work/enterprise_$destination_branch
 
 	# Add commit messages
-	cp ~/commit_template.txt "$dst_community/commit.message"
-	cp ~/commit_template.txt "$dst_enterprise/commit.message"
+	cp PATH_TO_ODOO_SCRIPTS_FOLDER/templates/commit_template.txt "$dst_community/commit.message"
+	cp PATH_TO_ODOO_SCRIPTS_FOLDER/templates/commit_template.txt "$dst_enterprise/commit.message"
 
 	# Add VSCode workspace settings
 	version_number=$(echo "$2" | grep -oP '\d+\.\d+')
@@ -58,10 +58,10 @@ then
 	branch_db_name="$db_name-$db_number"
 	branch_db_test="${branch_db_name}test"
 	loc=$dst_community/$(echo "$destination_branch" | sed -E 's/.*opw-([0-9]+-[^-]+).*/\1/').code-workspace
-	cp ~/scripts/templates/workspace.json $loc
-	~/db_manager/copydb $db_number $branch_db_name
-	~/db_manager/copydb $db_number $branch_db_test
-	~/db_manager/setdb $branch_db_name
+	cp PATH_TO_ODOO_SCRIPTS_FOLDER/templates/workspace.json $loc
+	PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/copydb $db_number $branch_db_name
+	PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/copydb $db_number $branch_db_test
+	PATH_TO_ODOO_SCRIPTS_FOLDER/db_manager/setdb $branch_db_name
 
 	sed -i "s|COMMUNITY_PATH|$dst_community|g" $loc
 	sed -i "s|ENTERPRISE_PATH|$dst_enterprise|g" $loc

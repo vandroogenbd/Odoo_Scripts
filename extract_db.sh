@@ -16,8 +16,8 @@ echo "### decompressing"
 rm -rf /tmp/db-$dbname
 unzip -q $1 -d /tmp/db-$dbname
 echo "### restoring filestore"
-mkdir -p ~/.local/share/Odoo/filestore/$dbname
-cp -rf /tmp/db-$dbname/filestore/* ~/.local/share/Odoo/filestore/$dbname
+mkdir -p $HOME/.local/share/Odoo/filestore/$dbname
+cp -rf /tmp/db-$dbname/filestore/* $HOME/.local/share/Odoo/filestore/$dbname
 echo "### restoring db"
 if ! createdb $dbname ; then
     echo 'Press f if you want to replace it or another key to exit'

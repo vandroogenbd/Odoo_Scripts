@@ -14,7 +14,7 @@ odoo_version() {
 update_workspace() {
     local current_branch="$1"
     local new_version="$2"
-    cd ~/playground
+    cd $HOME/playground
     if [[ "$current_branch" == "saas-"* ]]; then
         current_branch="${current_branch/saas-}"
     fi
@@ -31,7 +31,7 @@ psw() {
     curr_dir=$(pwd)
     branch=$(odoo_version "$1")
 
-    cd ~/playground/community
+    cd $HOME/playground/community
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     if [ "$current_branch" != "$branch" ]; then
         git fetch origin $branch > /dev/null 2>&1
@@ -45,7 +45,7 @@ psw() {
         update_workspace $current_branch $1
     fi
 
-    cd ~/playground/enterprise
+    cd $HOME/playground/enterprise
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     if [ "$current_branch" != "$branch" ]; then
         git fetch origin $branch > /dev/null 2>&1
@@ -65,7 +65,7 @@ check() {
         exit 0
     fi
     psw $1
-    codium -n ~/playground/playground.code-workspace
+    codium -n $HOME/playground/playground.code-workspace
 }
 
 # Run a specific (playground) version of Odoo
@@ -104,16 +104,16 @@ Ex: ro 180 shell 42069-180
 
     psw $version
     if $console_mode; then
-        ~/playground/community/odoo-bin shell --addons-path=~/playground/community/addons/,~/playground/enterprise/ -d "$version-clean" ${args[*]}
+        $HOME/playground/community/odoo-bin shell --addons-path=$HOME/playground/community/addons/,$HOME/playground/enterprise/ -d "$version-clean" ${args[*]}
     else
-        ~/playground/community/odoo-bin --addons-path=~/playground/community/addons/,~/playground/enterprise/ -d "$version-clean" ${args[*]}
+        $HOME/playground/community/odoo-bin --addons-path=$HOME/playground/community/addons/,$HOME/playground/enterprise/ -d "$version-clean" ${args[*]}
     fi
 }
 
 # Drop playground db of current version
 dropc() {
     current_dir=$(pwd)
-    cd ~/playground/community
+    cd $HOME/playground/community
     current_branch=$(git rev-parse --abbrev-ref HEAD)
 
     # Convert branch name to db version format

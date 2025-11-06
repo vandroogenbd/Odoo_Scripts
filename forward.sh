@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # community master repo
-community_master_path=~/work/community-master
+community_master_path=$HOME/work/community-master
 
 # calling directory
 curr_dir=$(pwd)

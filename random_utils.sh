@@ -25,6 +25,6 @@ venv() {
     if [[ "$(which python)" == "/home/odoo/venv/bin/python" ]]; then
         deactivate
     else
-        source ~/venv/bin/activate
+        source $HOME/venv/bin/activate
     fi
 }
